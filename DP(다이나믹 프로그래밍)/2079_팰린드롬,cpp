@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+#include <string>
+#include <vector>
+#include <map>
+#include <math.h>
+using namespace std;
+const int MAX_N=2000+2;
+string s;
+int cache[MAX_N];
+
+bool isPalindrome(int idx,int i)
+{
+   if(s[idx]!=s[idx+i])return false;
+   for(int j=1;j<i/2+1;j++)
+    if(s[idx+j]!=s[idx+i-j])return false;
+   return true;
+}
+
+int f(int idx)
+{
+    if(idx==s.size())return 0;
+    int&ret=cache[idx];
+    if(ret!=-1)return ret;
+    ret=f(idx+1)+1;
+    for(int i=1;idx+i<s.size();i++)
+        if(isPalindrome(idx,i))ret=min(ret,f(idx+i+1)+1);
+    return ret;
+}
+
+int main()
+{
+    memset(cache,-1,sizeof(cache));
+    cin>>s;
+    cout<<f(0);
+}

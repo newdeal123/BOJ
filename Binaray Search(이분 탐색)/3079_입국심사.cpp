@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+typedef unsigned long long ll;
 const ll MAX_M=(ll)1E9+1;
 ll N,M,arr[100000+2];
 
@@ -19,16 +19,20 @@ int main()
     cin.tie(0);
 
     cin >> N>>M;
+    ll maxT=0;
     for(int i=0;i<N;i++)
-        cin >>arr[i];
-    ll left=1,right=1000000000000000000LL;
+        {
+            cin >>arr[i];
+            maxT=max(maxT,arr[i]);
+        }
+    ll left=0,right=maxT*M;
     ll ret=LLONG_MAX-1;
     while(left<=right)
     {
         ll mid=(left+right)/2;
         if(is_possible(mid))
         {
-            ret=min(ret,mid);
+            ret=mid;
             right=mid-1;
         }
         else

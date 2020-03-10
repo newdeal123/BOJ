@@ -25,16 +25,7 @@ int bfs()
 		q.pop();
 		if (now == K)
 			break;
-		for (int i = 0; i < 2; i++)
-		{
-			int next = now + go[i];
-			if (isinrange(next))
-			  if (!visited[next])
-				{
-					visited[next] = visited[now] + 1;
-					q.push(next);
-				}		
-		}
+
 		for (int i = 2; i*now <= K * 2; i *= 2)
 		{
 			if (now == 0)
@@ -44,6 +35,16 @@ int bfs()
 				if (!visited[next])
 				{
 					visited[next] = visited[now];
+					q.push(next);
+				}
+		}
+		for (int i = 0; i < 2; i++)
+		{
+			int next = now + go[i];
+			if (isinrange(next))
+			  if (!visited[next])
+				{
+					visited[next] = visited[now] + 1;
 					q.push(next);
 				}
 		}

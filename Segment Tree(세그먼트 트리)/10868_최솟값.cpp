@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 using namespace std;
-const int INF = 987654321;
+const int INF = (int)1e9+2;
 int init(const vector <int> &arr, int start, int fin, int n);
 
 struct SEG_TREE
